@@ -1,6 +1,13 @@
 
 # Walmart Sales Data Analysis
 
+## **Autor**
+
+**Dion Lopes**  
+Projeto de **Análise de Dados** com fins educacionais e demonstrativos.  
+
+[LinkedIn](https://www.linkedin.com) | [GitHub](https://github.com/seuusuario)
+
 ## **Descrição do Projeto**
 Este projeto apresenta uma análise de dados de vendas da rede **Walmart**, desenvolvida com **Python (Pandas)**, **SQL Server** e **Power BI**.  
 O objetivo foi **comparar o desempenho de faturamento entre 2022 e 2023**, avaliar a **distribuição por categoria e método de pagamento**, e identificar as **filiais com maior crescimento percentual**.  
@@ -55,59 +62,24 @@ df.to_sql(
     index=False
 )
 ```
-### 3 **Consultas SQL e Tabelas de Apoio**
 
-Criação de tabelas auxiliares para modelagem e análise no Power BI:
+### 3. **Consultas SQL e Criação das Tabelas de Apoio**
 
-**Tabela Vendas**
+Após o carregamento no SQL Server, foram criadas três tabelas auxiliares:
 
-```
-WITH vendas AS (
-    SELECT
-        invoice_id,
-        category,
-        unit_price,
-        total_price,
-        quantity,
-        rating,
-        payment_method,
-        branch,
-        date
-    FROM Walmart
-)
-SELECT *
-FROM vendas
-WHERE YEAR(CONVERT(DATE, [date], 3)) IN (2022, 2023);
-```
-**Tabela Data**
-```
-WITH data AS (
-    SELECT 
-        CONVERT(DATE, [date], 3) AS data_completa,
-        YEAR(CONVERT(DATE, [date], 3)) AS ano_data,
-        DATENAME(MONTH, CONVERT(DATE, [date], 3)) AS mes_data,
-        DATENAME(WEEKDAY, CONVERT(DATE, [date], 3)) AS dia_data,
-        CASE 
-            WHEN DATEPART(HOUR, TRY_CONVERT(time, [time])) BETWEEN 6 AND 11 THEN 'Morning'
-            WHEN DATEPART(HOUR, TRY_CONVERT(time, [time])) BETWEEN 12 AND 17 THEN 'Afternoon'
-            ELSE 'Evening'
-        END AS turno
-    FROM Walmart
-    WHERE YEAR(CONVERT(DATE, [date], 3)) IN (2022, 2023)
-)
-SELECT * FROM data;
-```
+- vendas – contém informações detalhadas de cada venda (invoice_id, category, total_price, payment_method, etc.)
+- filial – mapeia filiais e suas respectivas cidades.
+- data – organiza a dimensão temporal (ano, mês, dia da semana e turno).
 
-**Tabela Filial**
+O código completo dessas consultas está disponível no arquivo
+sql_queries/walmart_tables.sql
 
-Essas tabelas serviram como base para análises de:
+
+**Essas tabelas serviram como base para análises de:**
 
 - Faturamento total por ano
-
 - Vendas por categoria e filial
-
 - Padrões de compra por horário e dia da semana
-
 - Modelagem e Visualização (Power BI)
 
 ### **4 Modelagem e Visualização (Power BI)**
@@ -115,12 +87,18 @@ Essas tabelas serviram como base para análises de:
 A modelagem no Power BI envolveu:
 
 - Criação das medidas DAX para KPIs
-
 - Relacionamentos entre tabelas de Data, Vendas e Categoria
-
 - Construção de dashboards comparativos 2022–2023
 
 **Principais Métricas DAX**
+
+As seguintes medidas foram criadas para analisar o desempenho de faturamento e crescimento anual:
+
+- Faturamento_2022 → soma do faturamento no ano de 2022.
+- Faturamento_2023 → soma do faturamento no ano de 2023.
+- Diferença_faturamento → diferença absoluta entre os dois anos.
+- Variação_percentual (YoY) → crescimento percentual de 2023 em relação a 2022.
+- Ícone de tendência → representação visual (🟢🔴⚪) da variação percentual.
 
 ```
 Diferença_faturamento = [Faturamento_2023] - [Faturamento_2022]
@@ -151,48 +129,57 @@ SWITCH(
 )
 ```
 
-### **5 Visualização dos KPIs (Power BI)**
+**Visualização dos KPIs**
 
 O dashboard apresenta:
 
 - Faturamento Anual (2022 vs 2023)
-
 - Variação Percentual (YoY)
-
 - Distribuição por Método de Pagamento
-
 - Ranking de Filiais e Categorias
 
 (Você pode incluir prints ou links do dashboard aqui.)
 
 
-### Análise do Dashboard de Faturamento 2022-2023
+### **Análise do Dashboard de Faturamento 2022-2023**
 
 **Principais Resultados**
 
-TABELA 
+| Indicador              | 2022     | 2023     | Variação    |
+| ---------------------- | -------- | -------- | ----------- |
+| **Faturamento Total**  | $217 mil | $232 mil | **+7%**     |
+| **Diferença Absoluta** | —        | —        | **$15 mil** |
+
 
 Crescimento mais acentuado nos meses de outubro a dezembro de 2023, indicando sazonalidade positiva no fim do ano.
 
 **Desempenho e Distribuição**
 
-Faturamento por Método de Pagamento:
+*Faturamento por Método de Pagamento:*
  - Cartão de Crédito: $179,11 mil (76,89%)
  - eWallet: $195,86 mil (43,56%)
  - Dinheiro (Cash): $74,69 mil (16,61%)
 
 Observação: a soma dos percentuais deve ser verificada em relação ao total do dataset.
 
-Faturamento por Categoria:
-•	Fashion Accessories (Acessórios de Moda) lidera as vendas.
-•	Home and Lifestyle e Electronic Accessories seguem em ordem decrescente.
-Sazonalidade: crescimento acentuado nos meses de outubro, novembro e dezembro de 2023 em comparação com 2022.
+*Faturamento por Categoria:*
+- Fashion Accessories (Acessórios de Moda) lidera as vendas.
+- Home and Lifestyle e Electronic Accessories seguem em ordem decrescente.
+- Sazonalidade: crescimento acentuado nos meses de outubro, novembro e dezembro de 2023 em comparação com 2022.
 
-Filiais com Maior Crescimento (2023 vs 2022)
+**Filiais com Maior Crescimento (2023 vs 2022)**
+
+| Filial  | Localização | Crescimento |
+| ------- | ----------- | ----------- |
+| MALM006 | El Paso     | 173%        |
+| MALM010 | Laredo      | 162%        |
+| MALM091 | Little Elm  | 149%        |
+
 
 ### Conclusão 
 
-
+A análise demonstra um **aumento consistente no faturamento** de 2023 em relação a 2022, com destaque para o crescimento em **algumas filiais e categorias específicas**.  
+Os resultados evidenciam o potencial da **integração entre Python, SQL e Power BI** para criação de **relatórios de desempenho automatizados e visualmente intuitivos**.
 
 
 
