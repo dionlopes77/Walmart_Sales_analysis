@@ -1,56 +1,55 @@
+# Walmart Sales Data Analysis - Análise de Faturamento 2022-2023  
+### Power BI | Python | SQL Server
 
+---
 
-Walmart Sales Data Analysis - Análise de Faturamento 2022-2023 – Power BI, Python e SQL Server
-Descrição do Projeto
+## **Descrição do Projeto**
 
-Este projeto apresenta uma análise de dados de vendas da rede Walmart utilizando Python (pandas), SQL Server e Power BI.
-O objetivo foi comparar o desempenho de faturamento entre 2022 e 2023, avaliar a distribuição por categoria e método de pagamento, e identificar as filiais com maior crescimento percentual.
+Este projeto apresenta uma análise de dados de vendas da rede **Walmart** utilizando **Python (pandas)**, **SQL Server** e **Power BI**.  
+O objetivo foi **comparar o desempenho de faturamento entre 2022 e 2023**, avaliar a **distribuição por categoria e método de pagamento**, e identificar **as filiais com maior crescimento percentual**.
 
-Objetivos
+---
 
-Realizar a extração e limpeza dos dados de vendas.
+## **Objetivos**
 
-Calcular o faturamento anual e suas variações.
+- Realizar a **extração e limpeza dos dados de vendas**.  
+- Calcular o **faturamento anual e suas variações**.  
+- Construir **indicadores (KPIs)** no Power BI.  
+- Identificar **padrões de crescimento e sazonalidade**.  
+- Criar **visualizações interativas e interpretáveis**.
 
-Construir indicadores (KPIs) no Power BI.
+---
 
-Identificar padrões de crescimento e sazonalidade.
+## **Tecnologias Utilizadas**
 
-Criar visualizações interativas e interpretáveis.
+- **Python:** pandas, matplotlib, sqlalchemy, pyodbc  
+- **SQL Server:** armazenamento e consultas de dados  
+- **Power BI:** visualização de KPIs e dashboards  
 
-Tecnologias Utilizadas
+---
 
-Python: pandas, matplotlib, sqlalchemy, pyodbc
-
-SQL Server: armazenamento e consultas de dados
-
-Power BI: visualização de KPIs e dashboards
-
-Estrutura Analítica
+## **Estrutura Analítica**
 
 A análise foi dividida em três etapas principais:
 
-Tratamento e integração de dados
+### *1. Tratamento e integração de dados*
+- Leitura e limpeza de dados com **Python (pandas)**  
+- Inserção no banco de dados **SQL Server**  
+- Consultas **SQL** para agregações e filtros  
 
-Leitura e limpeza de dados com Python (pandas)
+### *2. Modelagem no Power BI*
+- Criação das **medidas DAX** para cálculo de KPIs  
+- Relacionamentos entre tabelas de **Data, Vendas e Categoria**
 
-Inserção no banco de dados SQL Server
+### *3. Visualização e interpretação dos resultados*
+- Dashboard comparando os anos de **2022 e 2023**  
+- Gráficos de **distribuição e rankings** por categoria e filial  
 
-Consultas SQL para agregações e filtros
+---
 
-Modelagem no Power BI
+## **Métricas DAX Utilizadas**
 
-Criação das medidas DAX para cálculo de KPIs
-
-Relacionamentos entre tabelas de Data, Vendas e Categoria
-
-Visualização e interpretação dos resultados
-
-Dashboard comparando os anos de 2022 e 2023
-
-Gráficos de distribuição e rankings por categoria e filial
-
-Métricas DAX Utilizadas
+```DAX
 Diferença_faturamento = [Faturamento_2023] - [Faturamento_2022]
 
 Faturamento_2022 = CALCULATE(
@@ -78,63 +77,71 @@ Variacao_percentual = DIVIDE(
     [Faturamento_2022]
 )
 
+## **Visualização dos KPIs**
 
-Essas medidas permitiram calcular e visualizar a evolução do faturamento entre os anos, destacando a variação absoluta e percentual.
+Abaixo está a visualização criada no **Power BI** para acompanhar os principais indicadores de desempenho do projeto, incluindo **faturamento anual**, **variação percentual**, **distribuição por método de pagamento** e **ranking de filiais**.
 
-Visualização dos KPIs
+<p align="center">
+  <img src="imagens/dashboard_kpis.png" alt="Dashboard Power BI" width="80%">
+</p>
 
-Abaixo está a visualização criada no Power BI para acompanhar os principais indicadores de desempenho do projeto, incluindo faturamento anual, variação percentual, distribuição por método de pagamento e ranking de filiais.
+---
 
-<p align="center"> <img src="imagem/dashboard_kpis.png" alt="Dashboard Power BI" width="80%"> </p>
-Análise do Dashboard de Faturamento 2022-2023
+## **Análise do Dashboard de Faturamento 2022-2023**
 
-O dashboard demonstra o desempenho de faturamento, comparando 2022 e 2023, e detalha a distribuição por método de pagamento e categoria, além de um ranking por filial.
+O dashboard demonstra o desempenho de faturamento, comparando **2022 e 2023**, e detalha a **distribuição por método de pagamento e categoria**, além de um **ranking por filial**.
 
-Resultados Principais
+---
 
-Faturamento Total (2023): $232 mil
+### **Resultados Principais**
 
-Faturamento Total (2022): $217 mil
+- **Faturamento Total (2023):** \$232 mil  
+- **Faturamento Total (2022):** \$217 mil  
+- **Variação Anual Absoluta (YoY):** \$15 mil  
+- **Variação Percentual (YoY):** **7%** (crescimento de 2023 sobre 2022)
 
-Variação Anual Absoluta (YoY): $15 mil
+---
 
-Variação Percentual (YoY): 7% (crescimento de 2023 sobre 2022)
+### **Desempenho e Distribuição**
 
-Desempenho e Distribuição
+**Faturamento por Método de Pagamento:**
+- Cartão de Crédito: \$179,11 mil (76,89%)  
+- eWallet: \$195,86 mil (43,56%)  
+- Dinheiro (Cash): \$74,69 mil (16,61%)  
 
-Faturamento por Método de Pagamento:
+> *Observação:* a soma dos percentuais deve ser verificada em relação ao total do dataset.
 
-Cartão de Crédito: $179,11 mil (76,89%)
+**Faturamento por Categoria:**
+- *Fashion Accessories (Acessórios de Moda)* lidera as vendas.  
+- *Home and Lifestyle* e *Electronic Accessories* seguem em ordem decrescente.  
 
-eWallet: $195,86 mil (43,56%)
+**Sazonalidade:** crescimento acentuado nos meses de **outubro, novembro e dezembro de 2023** em comparação com 2022.
 
-Dinheiro (Cash): $74,69 mil (16,61%)
-Observação: a soma dos percentuais deve ser verificada em relação ao total do dataset.
+---
 
-Faturamento por Categoria:
+### **Desempenho por Filial**
 
-Fashion Accessories (Acessórios de Moda) lidera as vendas.
+Maiores crescimentos percentuais (**2023 vs 2022**):
 
-Home and Lifestyle e Electronic Accessories seguem em ordem decrescente.
+| **Filial** | **Localização** | **Crescimento (%)** |
+|:-----------:|:----------------|-------------------:|
+| MALM006 | El Paso | **173%** |
+| MALM010 | Laredo | **162%** |
+| MALM091 | Little Elm | **149%** |
 
-Sazonalidade: crescimento acentuado nos meses de outubro, novembro e dezembro de 2023 em comparação com 2022.
+---
 
-Desempenho por Filial
+## **Conclusão**
 
-Maiores crescimentos percentuais (2023 vs 2022):
+A análise demonstra um **aumento consistente no faturamento** de 2023 em relação a 2022, com destaque para o crescimento em **algumas filiais e categorias específicas**.  
+Os resultados evidenciam o potencial da **integração entre Python, SQL e Power BI** para criação de **relatórios de desempenho automatizados e visualmente intuitivos**.
 
-MALM006 (El Paso): 173%
+---
 
-MALM010 (Laredo): 162%
+## **Autor**
 
-MALM091 (Little Elm): 149%
+**Dion Lopes**  
+Projeto de **Análise de Dados** com fins educacionais e demonstrativos.  
 
-Conclusão
+[LinkedIn](https://www.linkedin.com) | [GitHub](https://github.com/seuusuario)
 
-A análise demonstra um aumento consistente no faturamento de 2023 em relação a 2022, com destaque para o crescimento em algumas filiais e categorias específicas.
-Os resultados evidenciam o potencial de utilização integrada de Python, SQL e Power BI para criação de relatórios de desempenho automatizados e visualmente intuitivos.
-
-Autor
-
-Dion Lopes
-Projeto de análise de dados com fins educacionais e demonstrativos.
