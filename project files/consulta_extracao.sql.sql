@@ -1,5 +1,5 @@
 
-SELECT *
+SELECT TOP (10) *
 FROM Walmart;
 
 -- Criação de 3 tabelas temporárias (vendas, data e filial) para usar no Power BI
