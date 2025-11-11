@@ -71,8 +71,7 @@ Após o carregamento no SQL Server, foram criadas três tabelas auxiliares:
 - filial – mapeia filiais e suas respectivas cidades.
 - data – organiza a dimensão temporal (ano, mês, dia da semana e turno).
 
-O código completo dessas consultas está disponível no arquivo
-sql_queries/walmart_tables.sql
+O código completo dessas consultas está disponível no arquivo [project files/consulta_extracao.sql.sql](https://github.com/dionlopes77/Walmart_Sales_analysis/blob/main/project%20files/consulta_extracao.sql.sql)
 
 
 **Essas tabelas serviram como base para análises de:**
