@@ -138,7 +138,7 @@ O dashboard apresenta:
 - Distribuição por Método de Pagamento
 - Ranking de Filiais e Categorias
 
-(Você pode incluir prints ou links do dashboard aqui.)
+![Dashboard Power BI](https://github.com/dionlopes77/Walmart_Sales_analysis/blob/main/imagens/dashboard_kpis.png.png?raw=true)
 
 
 ### **Análise do Dashboard de Faturamento 2022-2023**
