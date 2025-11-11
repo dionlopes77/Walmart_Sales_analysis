@@ -76,6 +76,7 @@ Variacao_percentual = DIVIDE(
     [Diferença_faturamento],
     [Faturamento_2022]
 )
+```
 
 ## **Visualização dos KPIs**
 
